@@ -1,32 +1,30 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import logoImg from '../../assets/images/logo.svg';
-import backIcon from '../../assets/images/icons/back.svg';
+import logoImg from '../../assets/images/logo.svg'
+import backIcon from '../../assets/images/icons/back.svg'
 import './styles.css'
 
 interface pageHeaderProps {
-  title: string;
-  children?: any;
+  title: string
+  children?: any
 }
 
-const PageHeader: React.FC<pageHeaderProps> = ({title, children}) => {
+const PageHeader: React.FC<pageHeaderProps> = ({ title, children }) => {
   return (
     <header className="page-header">
       <div className="top-bar-container">
         <Link to="/">
-          <img src={backIcon} alt="Voltar"/>
+          <img src={backIcon} alt="Voltar" />
         </Link>
-        <img src={logoImg} alt="Proffy"/>
+        <img src={logoImg} alt="Proffy" />
       </div>
       <div className="header-content">
-        <strong>
-          {title}
-        </strong>
+        <strong>{title}</strong>
         {children}
       </div>
     </header>
-  );
+  )
 }
 
-export default PageHeader;
+export default PageHeader
