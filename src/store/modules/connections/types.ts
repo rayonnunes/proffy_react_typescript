@@ -4,6 +4,6 @@ import * as actions from './actions'
 export type ConnectionAction = ActionType<typeof actions>
 
 export interface ConnectionState {
-  loading: boolean;
-  total: number;
+  readonly loading: boolean;
+  readonly total: number;
 }
