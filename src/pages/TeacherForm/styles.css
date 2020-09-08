@@ -99,6 +99,26 @@
   background: var(--color-secondary-dark);
 }
 
+.confirm-button {
+  border-radius: 0.8rem;
+  font: 700 2rem Archivo;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  color: var(--color-button-text);
+
+  transition: background-color 0.2s;
+
+  background: var(--color-primary-lighter) !important;
+}
+
+.confirm-button:hover {
+  background: var(--color-primary-light) !important;
+}
+
 @media (min-width: 700px) {
 
   #page-teacher-form {
