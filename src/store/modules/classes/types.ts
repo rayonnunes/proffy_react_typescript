@@ -1,6 +1,12 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 
+export interface GetTeachersFilters {
+  subject: string;
+  week_day: string;
+  time: string;
+}
+
 interface ScheduleItemsState {
   readonly week_day: number | string;
   readonly from: string;
@@ -12,17 +18,25 @@ export interface ResponseProps {
   readonly content: string;
 }
 
-export interface ClassesState {
+export interface ClassProps {
+  readonly id?: number;
+  readonly user_id?: number;
   readonly name: string;
   readonly avatar: string;
   readonly whatsapp: string;
   readonly bio: string;
   readonly subject: string;
   readonly cost: string;
-  readonly schedule: Array<ScheduleItemsState>;
+  readonly schedule: ScheduleItemsState[];
+}
+
+export interface ClassesState {
+  readonly newClass: ClassProps;
+  readonly classesList: ClassProps[];
   readonly loading?: boolean;
   readonly status?: string | null;
   readonly message?: ResponseProps | null;
 }
+
 
 export type ClassesAction = ActionType<typeof actions>

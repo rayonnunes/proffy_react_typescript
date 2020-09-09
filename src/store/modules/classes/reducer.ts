@@ -1,19 +1,25 @@
-import { ClassesState, ClassesAction } from './types';
+import {
+  ClassesAction,
+  ClassesState,
+} from './types';
 
 const initialState: ClassesState = {
-  name: '',
-  avatar: '',
-  whatsapp: '',
-  bio: '',
-  subject: '',
-  cost: '',
-  schedule: [
-    {
-      week_day: 0,
-      from: '',
-      to: ''
-    }
-  ],
+  newClass: {
+    name: '',
+    avatar: '',
+    whatsapp: '',
+    bio: '',
+    subject: '',
+    cost: '',
+    schedule: [
+      {
+        week_day: 0,
+        from: '',
+        to: ''
+      }
+    ],
+  },
+  classesList: [],
   loading: false,
   status: null,
   message: null,
@@ -21,6 +27,22 @@ const initialState: ClassesState = {
 
 const classes = (state = initialState, action: ClassesAction ): ClassesState => {
   switch (action.type) {
+    case '@classes/SEARCH_TEACHERS':
+      return {
+        ...state,
+        loading: true,
+      }
+    case '@classes/SEARCH_TEACHERS_SUCCESS':
+      return {
+        ...state,
+        loading: true,
+        classesList: action.payload
+      }
+    case '@classes/SEARCH_TEACHERS_FAILED':
+      return {
+        ...state,
+        loading: true,
+      }
     case '@classes/CREATE_NEW_CLASS':
       return {
         ...state,
@@ -41,7 +63,7 @@ const classes = (state = initialState, action: ClassesAction ): ClassesState => 
         message: action.payload,
       }
     default:
-      return initialState;
+      return state;
   }
 }
 

@@ -1,35 +1,35 @@
-import React from 'react';
+import React from 'react'
 
-import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
-import './styles.css';
+import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
+import './styles.css'
 
-const TeacherItem = () => {
+const TeacherItem = ({ data }: any) => {
   return (
     <article className="teacher-item">
       <header>
-        <img src="https://picsum.photos/300/300" alt="Nome de Usuário"/>
+        <img src={data.avatar} alt="Foto do Professor" />
         <div>
-          <strong>Nome do Professor</strong>
-          <span>Química</span>
+          <strong>{data.name}</strong>
+          <span>{data.subject}</span>
         </div>
       </header>
-      <p>
-        Entusiasta das melhores tecnologias de química avançada.
-        <br /><br />
-        Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.
-      </p>
+      <p>{data.bio}</p>
       <footer>
         <p>
           Preço/hora
-          <strong>R$ 80,00</strong>
+          <strong>R$ {data.cost},00</strong>
         </p>
-        <button type="button">
-          <img src={whatsappIcon} alt="Entrar em Contato"/>
+        <a
+          href={`https://wa.me/${data.whatsapp}?text=Olá Gostaria de Saber mais sobre suas aulas`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={whatsappIcon} alt="Entrar em Contato" />
           Entrar em Contato
-        </button>
+        </a>
       </footer>
     </article>
   )
 }
 
-export default TeacherItem;
+export default TeacherItem

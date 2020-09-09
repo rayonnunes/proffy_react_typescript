@@ -1,5 +1,29 @@
 import { action } from 'typesafe-actions';
-import { ClassesState, ResponseProps } from './types';
+import {
+  ClassesState,
+  ResponseProps,
+  GetTeachersFilters
+} from './types';
+
+export const getTeachers = ({
+  subject,
+  week_day,
+  time,
+}: GetTeachersFilters) => {
+  return action('@classes/SEARCH_TEACHERS', {
+    subject,
+    week_day,
+    time,
+  })
+}
+
+export const getTeachersSuccess = (data: ClassesState['classesList']) => {
+  return action('@classes/SEARCH_TEACHERS_SUCCESS', data)
+}
+
+export const getTeachersFailed = () => {
+  return action('@classes/SEARCH_TEACHERS_FAILED')
+}
 
 export const createNewClass = ({
   name,
@@ -9,7 +33,7 @@ export const createNewClass = ({
   subject,
   cost,
   schedule,
-}: ClassesState) => {
+}: ClassesState['newClass']) => {
   return action('@classes/CREATE_NEW_CLASS', {
     name,
     avatar,

@@ -14,26 +14,27 @@ import Select from '../../components/Select'
 import TextArea from '../../components/TextArea'
 import warningIcon from '../../assets/images/icons/warning.svg'
 import './styles.css'
-import { ClassesState } from '../../store/modules/classes/types'
 
 const TeacherForm: React.FC = () => {
-  const classes = useSelector((state: StoreState) => state.classes)
+  const { newClass, loading, status, message } = useSelector(
+    (state: StoreState) => state.classes,
+  )
   const dispatch = useDispatch()
   const history = useHistory()
 
   const [inputFields, setInputFields] = useState({
-    name: classes.name,
-    avatar: classes.avatar,
-    whatsapp: classes.whatsapp,
-    bio: classes.bio,
-    subject: classes.subject,
-    cost: classes.cost,
-    schedule: classes.schedule,
+    name: newClass.name,
+    avatar: newClass.avatar,
+    whatsapp: newClass.whatsapp,
+    bio: newClass.bio,
+    subject: newClass.subject,
+    cost: newClass.cost,
+    schedule: newClass.schedule,
   })
 
   const handleChanges = (
     stateKey: string,
-    stateValue: string | ClassesState['schedule'],
+    stateValue: string | StoreState['classes']['newClass']['schedule'],
   ) => {
     setInputFields(previousState => ({
       ...previousState,
@@ -74,11 +75,11 @@ const TeacherForm: React.FC = () => {
 
   const Alert = withReactContent(Swal)
   const ShowAlert = useCallback(() => {
-    if (classes.status !== null) {
+    if (status !== null) {
       Alert.fire({
-        title: classes.message?.title,
-        text: classes.message?.content,
-        icon: classes.status,
+        title: message?.title,
+        text: message?.content,
+        icon: status,
         confirmButtonText: 'Voltar ao Início',
         customClass: {
           confirmButton: 'confirm-button',
@@ -89,7 +90,7 @@ const TeacherForm: React.FC = () => {
         }
       })
     }
-  }, [Alert, classes, history])
+  }, [Alert, message, status, history])
   useEffect(() => {
     ShowAlert()
   }, [ShowAlert])
@@ -217,7 +218,7 @@ const TeacherForm: React.FC = () => {
               Importante <br />
               Preencha todos os dados
             </p>
-            {classes.loading ? (
+            {loading ? (
               <button type="button">
                 <div className="loader">
                   <div></div>
