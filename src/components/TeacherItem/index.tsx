@@ -1,9 +1,13 @@
 import React from 'react'
-
+import { useDispatch } from 'react-redux'
+import { createConnection } from '../../store/modules/connections/actions'
+import { ClassResponseProps } from '../../store/modules/classes/types'
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 import './styles.css'
 
-const TeacherItem = ({ data }: any) => {
+const TeacherItem: React.FC<{ data: ClassResponseProps }> = ({ data }) => {
+  const dispatch = useDispatch()
+
   return (
     <article className="teacher-item">
       <header>
@@ -20,6 +24,7 @@ const TeacherItem = ({ data }: any) => {
           <strong>R$ {data.cost},00</strong>
         </p>
         <a
+          onClick={() => dispatch(createConnection(data.user_id))}
           href={`https://wa.me/${data.whatsapp}?text=Olá Gostaria de Saber mais sobre suas aulas`}
           target="_blank"
           rel="noopener noreferrer"

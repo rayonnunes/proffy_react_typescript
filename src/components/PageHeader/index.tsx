@@ -8,7 +8,7 @@ import './styles.css'
 interface pageHeaderProps {
   title: string
   description?: string
-  children?: any
+  children?: React.ReactNode
 }
 
 const PageHeader: React.FC<pageHeaderProps> = ({
