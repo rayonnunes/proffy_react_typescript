@@ -19,8 +19,6 @@ export interface ResponseProps {
 }
 
 export interface ClassProps {
-  readonly id?: number;
-  readonly user_id?: number;
   readonly name: string;
   readonly avatar: string;
   readonly whatsapp: string;
@@ -30,9 +28,14 @@ export interface ClassProps {
   readonly schedule: ScheduleItemsState[];
 }
 
+export interface ClassResponseProps extends ClassProps {
+  readonly id: number;
+  readonly user_id: number;
+}
+
 export interface ClassesState {
   readonly newClass: ClassProps;
-  readonly classesList: ClassProps[];
+  readonly classesList: ClassResponseProps[];
   readonly loading?: boolean;
   readonly status?: string | null;
   readonly message?: ResponseProps | null;

@@ -23,6 +23,22 @@ const connection = (state = initial_state, action: ConnectionAction): Connection
         loading: false,
         total: action.payload.total,
       }
+    case '@connection/CREATE_CONNECTIONS':
+      return {
+        ...state,
+        total: 0,
+        loading: true,
+      }
+    case '@connection/CREATE_CONNECTIONS_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+      }
+    case '@connection/CREATE_CONNECTIONS_FAILED':
+      return {
+        ...state,
+        loading: false,
+      }
     default:
       return state;
   }

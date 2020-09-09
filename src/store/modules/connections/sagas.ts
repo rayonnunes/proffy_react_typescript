@@ -16,6 +16,23 @@ export function* connect (action: ActionType<typeof actions.getConnection>) {
   }
 }
 
+export function* createConnection (
+  action: ActionType<typeof actions.createConnection>
+) {
+  try {
+
+    const { payload } = action
+    yield call(api.post, '/connections', payload)
+    yield put(actions.createConnectionSuccess())
+
+  } catch (error) {
+
+    yield put(actions.createConnectionFailed())
+
+  }
+}
+
 export default all([
-  takeLatest('@connection/GET_CONNECTIONS', connect)
+  takeLatest('@connection/GET_CONNECTIONS', connect),
+  takeLatest('@connection/CREATE_CONNECTIONS', createConnection)
 ])
